@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfg2p7vh2gnod"]
+
+[ext_resource type="PackedScene" uid="uid://bh23qbw4m0sjr" path="res://Scenes/UI/progress_bar.tscn" id="1_rtg73"]
+[ext_resource type="PackedScene" uid="uid://bhd63f1ygsmqq" path="res://Scenes/Sprites/player.tscn" id="2_t7no0"]
+[ext_resource type="PackedScene" uid="uid://can5cqnxl1522" path="res://Scenes/Sprites/Star.tscn" id="3_fph5v"]
+[ext_resource type="PackedScene" uid="uid://c7cmxrdkwmv2s" path="res://Scenes/Sprites/Hazard.tscn" id="4_jo0ar"]
+
+[node name="PlayScene" type="Node2D"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ProgressBar" parent="UI" instance=ExtResource("1_rtg73")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 64.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" parent="." instance=ExtResource("2_t7no0")]
+position = Vector2(88, 208)
+
+[node name="Star" parent="." instance=ExtResource("3_fph5v")]
+position = Vector2(752, 232)
+
+[node name="Hazard" parent="." instance=ExtResource("4_jo0ar")]
+position = Vector2(344, 208)
+
+[connection signal="picked_up" from="Star" to="UI/ProgressBar" method="_on_star_picked_up"]
+[connection signal="area_entered" from="Hazard" to="Hazard" method="_on_area_entered"]

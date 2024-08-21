@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhd63f1ygsmqq"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/player.gd" id="1_8ud8k"]
+[ext_resource type="Texture2D" uid="uid://dyuq45eo0n4fo" path="res://Assets/Sprites/Spaceship.png" id="1_daft2"]
+[ext_resource type="PackedScene" uid="uid://cieen1omel3rr" path="res://Scenes/Sprites/ShipThruster.tscn" id="2_kcwtx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36ruq"]
+size = Vector2(115, 81)
+
+[node name="Player" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_8ud8k")
+
+[node name="ShipSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_daft2")
+
+[node name="Thruster1" parent="ShipSprite" instance=ExtResource("2_kcwtx")]
+position = Vector2(24, -40)
+rotation = 3.14159
+points = PackedVector2Array(0, 0)
+
+[node name="Thruster2" parent="ShipSprite" instance=ExtResource("2_kcwtx")]
+position = Vector2(-24, -40)
+rotation = -3.14159
+points = PackedVector2Array(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_36ruq")
+debug_color = Color(0.918204, 0.185206, 0.543482, 0.42)

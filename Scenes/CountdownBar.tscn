@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://0xbbnkymxbn6"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/countdown_bar.gd" id="1_weu0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55gxk"]
+bg_color = Color(0.262973, 0.70098, 0.39171, 1)
+
+[node name="CountdownBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_weu0o")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.099
+offset_bottom = -0.152008
+theme_override_styles/fill = SubResource("StyleBoxFlat_55gxk")
+show_percentage = false
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 0
+offset_left = 512.0
+offset_right = 704.0
+offset_bottom = 64.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

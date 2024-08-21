@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnj1ftcfci72b"]
+
+[ext_resource type="Theme" uid="uid://syna12ftgmj3" path="res://Scenes/CountdownBarTheme.tres" id="1_f5f5l"]
+[ext_resource type="Script" path="res://Assets/Sprites/countdown_bar.gd" id="1_gt4w8"]
+
+[node name="CountdownBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gt4w8")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 64.0
+theme = ExtResource("1_f5f5l")
+fill_mode = 1
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

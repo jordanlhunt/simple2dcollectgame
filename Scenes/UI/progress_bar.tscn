@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh23qbw4m0sjr"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/countdown_bar.gd" id="1_gfelf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55gxk"]
+bg_color = Color(0.262973, 0.70098, 0.39171, 1)
+
+[node name="ProgressBar" type="ProgressBar"]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_right = 0.511963
+offset_bottom = -0.152008
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_55gxk")
+show_percentage = false
+script = ExtResource("1_gfelf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
