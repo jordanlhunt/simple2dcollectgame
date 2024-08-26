@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfg2p7vh2gnod"]
+[gd_scene load_steps=7 format=3 uid="uid://cfg2p7vh2gnod"]
 
+[ext_resource type="PackedScene" uid="uid://cn4c6wy5auhfm" path="res://Scenes/Utility/random_hazard_or_pickup_placer.tscn" id="1_7dgbv"]
 [ext_resource type="PackedScene" uid="uid://bh23qbw4m0sjr" path="res://Scenes/UI/progress_bar.tscn" id="1_rtg73"]
 [ext_resource type="PackedScene" uid="uid://bhd63f1ygsmqq" path="res://Scenes/Sprites/player.tscn" id="2_t7no0"]
 [ext_resource type="PackedScene" uid="uid://can5cqnxl1522" path="res://Scenes/Sprites/Star.tscn" id="3_fph5v"]
+[ext_resource type="PackedScene" uid="uid://1puyig12m8yw" path="res://Scenes/UI/ScoreCounter.tscn" id="3_hwwkf"]
 [ext_resource type="PackedScene" uid="uid://c7cmxrdkwmv2s" path="res://Scenes/Sprites/Hazard.tscn" id="4_jo0ar"]
 
 [node name="PlayScene" type="Node2D"]
+
+[node name="RandomHazardOrPickupPlacer" parent="." instance=ExtResource("1_7dgbv")]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -16,19 +20,26 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 1152.0
+offset_right = 1024.0
 offset_bottom = 64.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="Control" parent="UI" instance=ExtResource("3_hwwkf")]
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1152.0
+
 [node name="Player" parent="." instance=ExtResource("2_t7no0")]
-position = Vector2(88, 208)
+position = Vector2(472, 168)
 
 [node name="Star" parent="." instance=ExtResource("3_fph5v")]
-position = Vector2(752, 232)
+visible = false
+position = Vector2(-56, -56)
 
 [node name="Hazard" parent="." instance=ExtResource("4_jo0ar")]
-position = Vector2(344, 208)
+visible = false
+position = Vector2(-56, -56)
 
+[connection signal="Collected_PickUp" from="Player" to="UI/Control" method="_on_player_collected_pick_up"]
 [connection signal="picked_up" from="Star" to="UI/ProgressBar" method="_on_star_picked_up"]
-[connection signal="area_entered" from="Hazard" to="Hazard" method="_on_area_entered"]

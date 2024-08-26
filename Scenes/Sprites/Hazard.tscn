@@ -3,12 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://ccfsqujp87vda" path="res://Assets/Sprites/hazard.png" id="1_boudg"]
 [ext_resource type="Script" path="res://Scenes/Scripts/hazard.gd" id="1_ilpou"]
 
-[node name="Hazard" type="Area2D"]
+[node name="Hazard" type="Area2D" groups=["Hazard"]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ilpou")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_boudg")
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 24, -16, 24, -16, 56, -56, 56, -56, 16, -24, 16, -24, -16, -56, -16, -56, -56, -16, -56, -16, -24, 16, -24, 16, -56, 56, -56, 56, -16, 24, -16, 24, 16, 56, 16, 56, 56, 16, 56, 16, 24)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

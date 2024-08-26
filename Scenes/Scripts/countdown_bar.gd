@@ -4,13 +4,14 @@ extends Control
 @onready var progress_bar_node: ProgressBar = get_node(".")
 @onready var label_node: Label = get_node("Label")
 
+const MAX_TIMER_VALUE: int = 5
 var color_red: Color = Color(0.871, 0.102, 0.196)
 var color_green: Color = Color(0.263, 0.701, 0.392)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	progress_bar_node.max_value = 5
-	timer_node.wait_time = 5
+	progress_bar_node.max_value = MAX_TIMER_VALUE
+	timer_node.wait_time = MAX_TIMER_VALUE
 	timer_node.one_shot = true
 	timer_node.start()
 	label_node.text = "Time Left: "
@@ -35,6 +36,16 @@ func _on_timer_timeout() -> void:
 func _on_star_picked_up(timeBonus: float) -> void:
 	timer_node.stop
 	timer_node.wait_time = timer_node.get_time_left() + timeBonus
-	if timer_node.wait_time >= 5.0:
-		timer_node.wait_time = 5.0
+	if timer_node.wait_time >= MAX_TIMER_VALUE:
+		timer_node.wait_time = MAX_TIMER_VALUE
+	timer_node.start()
+
+
+func _on_player_collected_hazard(value: float) -> void:
+	timer_node.stop
+	timer_node.wait_time = timer_node.get_time_left() - value
+	if timer_node.wait_time <= 0:
+		timer_node.wait_time = 0
+		timer_node.stop()
+		return
 	timer_node.start()

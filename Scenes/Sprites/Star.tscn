@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://8uvlr5cqo2pc" path="res://Assets/Sprites/star.png" id="1_fygw3"]
 [ext_resource type="Script" path="res://Scenes/Scripts/star.gd" id="1_ykpok"]
 
-[node name="Star" type="Area2D"]
+[node name="Star" type="Area2D" groups=["Pickup"]]
 collision_layer = 2
 script = ExtResource("1_ykpok")
 

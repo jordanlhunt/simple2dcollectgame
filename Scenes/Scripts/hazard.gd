@@ -11,4 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_area_entered(enteringArea: Area2D):
-	self.queue_free()
+	var enteringLayer = enteringArea.collision_layer
+	# If the player enters delete the hazard
+	if enteringLayer == 1:
+		self.queue_free()

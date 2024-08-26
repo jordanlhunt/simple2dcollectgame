@@ -29,3 +29,5 @@ points = PackedVector2Array(0, 0)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_36ruq")
 debug_color = Color(0.918204, 0.185206, 0.543482, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

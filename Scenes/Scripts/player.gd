@@ -1,12 +1,16 @@
 extends Area2D
+
+signal Collected_PickUp(scoreValue: int)
+signal Collected_Hazard(value: float)
+
 @onready var ship_sprite: Sprite2D = get_node("ShipSprite")
 @onready var thruster1: Line2D = get_node("ShipSprite/Thruster1")
 @onready var thruster2: Line2D = get_node("ShipSprite/Thruster2")
 
 var collection_count: int = 0
 var draw_thrusters_limit: float = 200.0
-var max_speed: float = 1200.0
-var steering_factor: float = 3.0
+var max_speed: float = 1000.0
+var steering_factor: float = 2.0
 var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
@@ -45,3 +49,11 @@ func HandleThrusters():
 	else:
 		thruster1.visible = false
 		thruster2.visible = false
+
+
+func _on_area_entered(otherArea: Area2D) -> void:
+	if otherArea.is_in_group("Pickup"):
+		emit_signal("Collected_PickUp", 1)
+		print_debug("Collected Pickup")
+	if otherArea.is_in_group("Hazard"):
+		emit_signal("Collected_Hazard", 1.5)
